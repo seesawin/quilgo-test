@@ -14,7 +14,7 @@ public class Test01 {
     top() -- Get the top element.
     getMax() -- Retrieve the maximum element in the stack.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         StackClass stackClass = new StackClass();
         stackClass.push(1);
         stackClass.push(2);
@@ -49,9 +49,12 @@ public class Test01 {
             return top;
         }
 
-        int getMax() {
+        int getMax() throws Exception {
             Optional<Integer> maxOpt = list.stream().max(Comparator.comparing(Integer::valueOf));
-            return maxOpt.isPresent() ? maxOpt.get() : -1;
+            if (maxOpt.isPresent()) {
+                return maxOpt.get();
+            }
+            throw new Exception("stack is empty");
         }
     }
 }
